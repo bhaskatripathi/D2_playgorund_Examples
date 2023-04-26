@@ -1,1 +1,31 @@
+# Actors
 
+customer: Customer {
+  icon: https://icons.terrastruct.com/aws%2F_General%2FUsers_light-bg.svg
+  shape: image
+}
+
+restaurant: Restaurant {
+  icon: https://icons.terrastruct.com/aws%2FCustomer%20Enablement%2FCustomer-Enablement.svg
+  shape: image
+}
+
+app: Online Food Ordering App {
+  icon: https://icons.terrastruct.com/essentials/005-programmer.svg
+  shape: image
+}
+
+delivery: Delivery Service {
+  icon: https://icons.terrastruct.com/essentials%2F091-share.svg
+  shape: image
+}
+
+# Interactions
+customer -> app: Browse food options
+customer -> app: Place order
+app -> restaurant: Forward order details
+restaurant -> app: Confirm order
+app -> customer: Order confirmation
+restaurant -> delivery: Prepare and hand over order
+delivery -> customer: Deliver food
+customer -> app: Rate and review order
