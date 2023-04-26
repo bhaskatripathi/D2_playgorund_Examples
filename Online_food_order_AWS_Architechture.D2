@@ -1,1 +1,69 @@
 
+title: {
+  label: Online Food Ordering App Architecture
+  shape: text
+  near: top-center
+  style: {
+    font-size: 55
+  }
+}
+
+aws: app-region {
+  style: {
+    fill: transparent
+    stroke-dash: 5
+  }
+
+  ApiGateway: {
+    icon: https://icons.terrastruct.com/aws/Networking%20&%20Content%20Delivery/Amazon-API-Gateway_light-bg.svg
+    style: {
+      stroke-dash: 5
+    }
+  }
+
+  ApiGateway -> AppBackend
+
+  AppBackend
+
+  AppBackend -> Database
+
+  Database: {
+    icon: https://icons.terrastruct.com/azure/Databases%20Service%20Color/Azure%20Database%20for%20PostgreSQL%20servers.svg
+    shape: image
+  }
+
+  S3: {
+    icon: https://icons.terrastruct.com/aws/Storage/Amazon-S3-Glacier_light-bg.svg
+  }
+
+  AppBackend -> S3: Store restaurant images and user avatars
+
+  LoadBalancer: {
+    icon: https://icons.terrastruct.com/aws/Networking%20&%20Content%20Delivery/Elastic-Load-Balancing-ELB_Network-load-balancer_light-bg.svg
+  }
+
+  ApiGateway -> LoadBalancer: API requests
+
+  LoadBalancer -> AppBackend
+
+  AuthService: {
+    icon: https://icons.terrastruct.com/aws%2FSecurity%2C%20Identity%2C%20&%20Compliance%2FAWS-Security-Hub.svg
+  }
+
+  AppBackend -> AuthService: User authentication
+
+  Cache: {
+    icon: https://icons.terrastruct.com/azure/_Companies/Azure%20Cache%20Redis%20Product%20icon.svg
+    shape: image
+  }
+
+  AppBackend <-> Cache: Cache frequently accessed data (e.g., restaurant menus, user session data)
+}
+
+MobileApp
+
+aws.ApiGateway -> MobileApp
+MobileApp: {
+  icon: https://icons.terrastruct.com/gcp%2FProducts%20and%20services%2FManagement%20Tools%2FCloud%20Mobile%20App.svg
+  shape: image
+}
